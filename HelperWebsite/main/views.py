@@ -22,3 +22,7 @@ def contact_received(request : HttpRequest,contact_id):
     contact_name=Contact.objects.get(id=contact_id)
     return render(request,'main/contact_received.html',{"contact_name":contact_name})
 
+
+#this function for about us page
+def about_us(request : HttpRequest):
+   return render(request,'main/about.html') 
