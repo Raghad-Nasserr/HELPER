@@ -26,3 +26,13 @@ def contact_received(request : HttpRequest,contact_id):
 #this function for about us page
 def about_us(request : HttpRequest):
    return render(request,'main/about.html') 
+
+
+#this function for travel management helper page
+def travel_management_helper(request : HttpRequest):
+   return render(request,'main/travel_management_helper.html') 
+
+
+#this function for event management helper page
+def event_management_helper(request : HttpRequest):
+   return render(request,'main/event_management_helper.html') 

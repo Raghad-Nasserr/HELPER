@@ -1,0 +1,111 @@
+{%extends 'main/base.html'%}
+{% load static %}
+
+{% block title %}   Travel management helper {% endblock %}
+
+
+
+{% block content %}
+<style>
+
+#image{
+  height: 500px; ;
+  background-repeat: no-repeat;
+  background-size: 1180px 500px ;}
+
+body{font-family:  'Catamaran';}
+
+
+</style>
+
+  <!-- travel manaegment helper page -->
+
+        <!-- Header -->
+        <header class="py-5 bg-image-full " id="image" style="background-image: url('https://images.pexels.com/photos/3935702/pexels-photo-3935702.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2')" >
+            <div class="text-center my-5">
+                <h1 style="color: rgba(255, 142, 20, 0.84); padding-top: 50px;">Travel management helper </h1>
+                <p > Private and business travel management</p>
+            </div>
+        </header>
+        <!-- Content section-->
+        <section class="py-5">
+            <div class="container my-5">
+                <div class="row justify-content-center">
+                    <div class="col-lg-6">
+                        <p class="lead" style="font-size: xx-large;">The world of travel can be complex. Let us find and plan the perfect trip for you, whether  for business or pleasure. We  take care of all aspects of planning  your next trip so that your day or vacation runs smoothly.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Content section-->
+        <section class="py-5">
+            <div class="container my-5">
+                <div class="row justify-content-center">
+                    <div class="col-lg-6">
+                        <h2>Travel management services </h2>
+                        <p class="mb-0">We are able to work up a travel itinerary around your existing schedule and make bookings on your behalf for:</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+<!-- Gallery -->
+<div class="row">
+    <div class="col-lg-4 col-md-12 mb-4 mb-lg-0">
+      <img
+        src="{% static 'images/IMG-9628.JPG' %}"
+        class="w-100 shadow-1-strong rounded mb-4"
+      />
+  
+      <img
+        src="{% static 'images/IMG-9624.JPG' %}"
+        class="w-100 shadow-1-strong rounded mb-4"
+      />
+    </div>
+  
+    <div class="col-lg-4 mb-4 mb-lg-0">
+        <img
+        src="{% static 'images/IMG-9609.JPG' %}"
+        class="w-100 shadow-1-strong rounded mb-4"
+      />
+  
+      <img
+        src="{% static 'images/IMG-9617.JPG' %}"
+        class="w-100 shadow-1-strong rounded mb-4"
+      />
+    </div>
+  
+    <div class="col-lg-4 mb-4 mb-lg-0">
+      <img
+        src="{% static 'images/IMG-9615.JPG' %}"
+        class="w-100 shadow-1-strong rounded mb-4"
+      />
+      
+  
+      <img
+        src="{% static 'images/IMG-9612.JPG' %}"
+        class="w-100 shadow-1-strong rounded mb-4"
+      />
+
+    </div>
+  </div>
+  <!-- Gallery -->
+        
+               <!-- Footer-->
+               <footer class="bg-dark py-5 mt-auto">
+                <div class="container px-5">
+                    <div class="row align-items-center justify-content-between flex-column flex-sm-row">
+                        <div class="col-auto"><div class="small m-0 text-white text-center">Copyright &copy; helper 2023</div></div>
+                        <div class="col-auto">
+                            <a class="link-light small" href="{% url 'main:contact_page' %}">Contact</a>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+            <!-- Footer-->
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="js/scripts.js"></script>
+
+{% endblock %}
