@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 
@@ -8,3 +9,11 @@ class Contact(models.Model):
     email=models.EmailField()
     subject=models.CharField(max_length=700)
     message=models.TextField()
+
+
+# Help request form model.
+class HelpRequest(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    help_description=models.TextField()
+    phone_number=models.IntegerField()
+

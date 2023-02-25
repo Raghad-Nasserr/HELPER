@@ -1,0 +1,60 @@
+{%extends 'main/base.html'%}
+{% load static %}
+
+{% block title %} Update help request {% endblock %}
+
+
+
+{% block content %}
+
+<body>
+    <div class="content">
+    <div class="container">
+    <div class="row justify-content-center">
+    <div class="col-md-10">
+    <div class="row align-items-center">
+    <div class="col-lg-7 mb-5 mb-lg-0">
+    <h2 style="margin-top: 150px; color: rgba(250, 142, 60, 0.979);">Welcome {{request.user.first_name}}</h2>
+    <form  method="post" action="">
+
+        {% csrf_token %}
+
+        <div class="row">
+        <div class="col-md-12 form-group">
+        <input type="tel" class="form-control" name="phone_number"  placeholder="Phone number" value="{{update.phone_number}}">
+        </div>
+        </div>
+        <div class="row">
+        <div class="col-md-12 form-group">
+        <textarea class="form-control" name="help_description"  cols="30" rows="7" placeholder="Help description">{{update.help_description}}</textarea>
+        </div>
+        </div>
+        <div class="row">
+        <div class="col-md-12" style="margin-top: 10px;">
+        <input type="submit" value="Send" class="btn btn-primary rounded-33 py-2 px-4">
+        </div>
+        </div>
+        </form>
+    <div id="form-message-warning mt-4"></div>
+    <div id="form-message-success">
+    </div>
+    </div>
+    <div class="col-lg-4 ml-auto">
+    <h3 style="margin-top: 80px;">Let's talk about everything, we are always here to help.</h3>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.validate.min.js"></script>
+    <script src="js/main.js"></script>
+    <script defer src="https://static.cloudflareinsights.com/beacon.min.js/vaafb692b2aea4879b33c060e79fe94621666317369993" integrity="sha512-0ahDYl866UMhKuYcW078ScMalXqtFJggm7TmlUtp0UlD4eQk0Ixfnm5ykXKvGJNFjLMoortdseTfsRT8oCfgGA==" data-cf-beacon='{"rayId":"79e8f3e11b5d7798","token":"cd0b4b3a733644fc843ef0b185f98241","version":"2023.2.0","si":100}' crossorigin="anonymous"></script>
+    </body>
+
+ 
+
+{% endblock %}

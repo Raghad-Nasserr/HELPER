@@ -39,7 +39,8 @@
                         <li class="nav-item"><a class="nav-link" href="{% url 'accounts:login_user' %}">Log In</a></li>
                         {% endif %}
                         <li class="nav-item"><a class="nav-link" href="#!">Join us</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#!">Request for help</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'main:requests_for_help' %}">Request for help</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{% url 'main:add_help_request' %}">Add help request</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'main:contact_page' %}">Contact us</a></li>
                     </ul>
                 </div>

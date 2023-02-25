@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Contact
+from .models import Contact,HelpRequest
 
 # Register your models here.
 
@@ -7,3 +7,9 @@ class ContactAdmin(admin.ModelAdmin):
     list_display = ('name', 'email', 'subject','message')
    
 admin.site.register(Contact,ContactAdmin)
+
+
+class HelpRequestAdmin(admin.ModelAdmin):
+    list_display = ('user', 'help_description', 'phone_number')
+   
+admin.site.register(HelpRequest,HelpRequestAdmin)

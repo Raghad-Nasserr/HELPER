@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect
 from django.http import HttpRequest, HttpResponse
-from .models import Contact
+from .models import Contact,HelpRequest
 # Create your views here.
 
 #this function for home page
@@ -36,3 +36,57 @@ def travel_management_helper(request : HttpRequest):
 #this function for event management helper page
 def event_management_helper(request : HttpRequest):
    return render(request,'main/event_management_helper.html') 
+
+
+
+######## user side 
+
+
+
+#This function is for requests for help
+
+def requests_for_help(request : HttpRequest):
+    latest_help_requests = HelpRequest.objects.all()
+    context = {"latest_help_requests" : latest_help_requests}
+    return render(request,'main/requests_for_help.html',context)
+
+
+#This function is for adding help request 
+
+def add_help_request(request : HttpRequest):
+   if request.method == "POST":
+        #to add a new entry
+        new_request = HelpRequest(user=request.user, help_description = request.POST["help_description"], phone_number = request.POST["phone_number"])
+        new_request.save()
+        return redirect("main:requests_for_help")
+
+   return render(request,'main/add_help_request.html') 
+
+
+#This function is for updating help request 
+
+def update_help_request(request : HttpRequest,request_id):
+   update = HelpRequest.objects.get(id=request_id)
+   if request.method == "POST":
+         update.phone_number = request.POST["phone_number"]
+         update.help_description = request.POST["help_description"]
+         update.save()
+         return redirect("main:requests_for_help")
+   return render(request,'main/update_help_request.html',{'update':update}) 
+
+
+#This function is for deleting help request 
+
+def delete_help_request(request : HttpRequest,request_id):
+    delete_request = HelpRequest.objects.get(id=request_id)
+    delete_request.delete()
+    return redirect("main:requests_for_help")
+
+
+#This function is for help details 
+
+def help_details(request : HttpRequest,request_id):
+    details=HelpRequest.objects.get(id=request_id)
+    return render(request,'main/help_details.html',{'details':details}) 
+
+
