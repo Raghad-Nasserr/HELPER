@@ -17,3 +17,12 @@ class HelpRequest(models.Model):
     help_description=models.TextField()
     phone_number=models.IntegerField()
 
+# Helper form model.
+class Helper(models.Model):
+    name=models.CharField(max_length=700)
+    email=models.EmailField()
+    phone_number=models.IntegerField()
+    description_of_experiences=models.TextField()
+    helper_cv= models.FileField(upload_to="uploads/")
+
+

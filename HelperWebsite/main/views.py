@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect
 from django.http import HttpRequest, HttpResponse
-from .models import Contact,HelpRequest
+from .models import Contact,HelpRequest,Helper
 # Create your views here.
 
 #this function for home page
@@ -90,3 +90,21 @@ def help_details(request : HttpRequest,request_id):
     return render(request,'main/help_details.html',{'details':details}) 
 
 
+
+## helper side
+
+
+#this function for adding new helper
+def add_new_helper(request : HttpRequest):
+  if request.method == "POST":
+         add_helper =Helper(name= request.POST["name"], email = request.POST["email"], phone_number = request.POST["phone_number"], description_of_experiences = request.POST["description_of_experiences"], helper_cv = request.FILES["helper_cv"])
+         add_helper.save()
+         return redirect("main:apply_page",apply_id=add_helper.id)
+   
+  return render(request,'main/add_new_helper.html')
+
+
+#This function will work after the new helper submits the form 
+def apply(request : HttpRequest,apply_id):
+    helper=Helper.objects.get(id=apply_id)
+    return render(request,'main/apply.html',{"helper":helper})
