@@ -24,20 +24,38 @@
         <h2 style="margin-top: 100px; color: rgba(250, 142, 60, 0.979);">Welcome to HELPER! </h2>
 
 
-        <form  method="post" action=""enctype="multipart/form-data">
+        <form  method="post" action="" enctype="multipart/form-data">
     
             {% csrf_token %}
     
-            <div class="row">
-            <div class="col-md-12 form-group">
-            <input type="text" class="form-control" name="name"  placeholder="Name">
+
+            <div class="form-group">
+                <label for="exampleInputusername">User Name</label>
+                <input type="text" name="username" class="form-control" id="exampleInputusername">
             </div>
+
+            <div class="form-group">
+                <label for="exampleInputEmail1">Email address</label>
+                <input type="email" name="email" class="form-control" id="exampleInputEmail1">
             </div>
-            <div class="row">
-            <div class="col-md-12 form-group">
-            <input type="email" class="form-control" name="email"  placeholder="Email">
+
+            <div class="form-group mb-3">
+                <label for="exampleInputPassword1">Password</label>
+                <input type="password" name="password" class="form-control" id="exampleInputPassword1">
             </div>
+
+            
+            <div class="form-group mb-3">
+                <label for="exampleInputfirstname">First Name</label>
+                <input type="text" name="first_name" class="form-control" id="exampleInputfirstname">
             </div>
+
+
+            <div class="form-group mb-3">
+                <label for="exampleInputlastname">Last Name</label>
+                <input type="text" name="last_name" class="form-control" id="exampleInputlastname">
+            </div>
+
 
             <div class="row">
             <div class="col-md-12 form-group">

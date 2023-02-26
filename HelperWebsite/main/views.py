@@ -1,6 +1,7 @@
 from django.shortcuts import render,redirect
 from django.http import HttpRequest, HttpResponse
-from .models import Contact,HelpRequest,Helper
+from .models import Contact,HelpRequest,Helper,Reply
+from django.contrib.auth.models import User
 # Create your views here.
 
 #this function for home page
@@ -39,7 +40,7 @@ def event_management_helper(request : HttpRequest):
 
 
 
-######## user side 
+# part 1 
 
 
 
@@ -83,23 +84,20 @@ def delete_help_request(request : HttpRequest,request_id):
     return redirect("main:requests_for_help")
 
 
-#This function is for help details 
-
-def help_details(request : HttpRequest,request_id):
-    details=HelpRequest.objects.get(id=request_id)
-    return render(request,'main/help_details.html',{'details':details}) 
 
 
 
-## helper side
+# part 2
 
 
 #this function for adding new helper
 def add_new_helper(request : HttpRequest):
   if request.method == "POST":
-         add_helper =Helper(name= request.POST["name"], email = request.POST["email"], phone_number = request.POST["phone_number"], description_of_experiences = request.POST["description_of_experiences"], helper_cv = request.FILES["helper_cv"])
+         new_user = User.objects.create_user(username=request.POST["username"], email=request.POST["email"], password=request.POST["password"], first_name = request.POST["first_name"], last_name = request.POST["last_name"])
+         new_user.save()
+         add_helper =Helper(user= new_user, phone_number = request.POST["phone_number"], description_of_experiences = request.POST["description_of_experiences"], helper_cv = request.FILES["helper_cv"])
          add_helper.save()
-         return redirect("main:apply_page",apply_id=add_helper.id)
+         return redirect("accounts:login_user")
    
   return render(request,'main/add_new_helper.html')
 
@@ -108,3 +106,34 @@ def add_new_helper(request : HttpRequest):
 def apply(request : HttpRequest,apply_id):
     helper=Helper.objects.get(id=apply_id)
     return render(request,'main/apply.html',{"helper":helper})
+
+
+
+
+#This function to let the helper reply to help request 
+
+def add_reply(request : HttpRequest,request_id):
+
+    if request.method == "POST":
+        helprequest = HelpRequest.objects.get(id=request_id)
+        new_reply = Reply(user=request.user, helprequest=helprequest, content = request.POST["content"], created_at = request.POST["created_at"])
+        new_reply.save()
+
+    return redirect("main:help_details", request_id=request_id)
+
+
+
+#This function is for help details 
+
+def help_details(request : HttpRequest,request_id):
+    helprequest=HelpRequest.objects.get(id=request_id)
+    reply=Reply.objects.filter(helprequest=helprequest)
+    return render(request,'main/help_details.html',{'helprequest':helprequest,'reply':reply}) 
+
+
+
+#This function is for the helper profile 
+
+
+def helper_profile(request : HttpRequest):
+   return render( request, "main/helper_profile.html")

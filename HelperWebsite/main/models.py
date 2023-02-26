@@ -15,14 +15,20 @@ class Contact(models.Model):
 class HelpRequest(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     help_description=models.TextField()
-    phone_number=models.IntegerField()
+    phone_number=models.CharField(max_length=64)
 
 # Helper form model.
 class Helper(models.Model):
-    name=models.CharField(max_length=700)
-    email=models.EmailField()
-    phone_number=models.IntegerField()
+    user = models.OneToOneField(User, on_delete=models.Case, primary_key=True)
+    phone_number=models.CharField(max_length=64)
     description_of_experiences=models.TextField()
     helper_cv= models.FileField(upload_to="uploads/")
 
+# Reply model.
 
+class Reply(models.Model):
+
+    helprequest = models.ForeignKey(HelpRequest, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    content = models.TextField()
+    created_at = models.TimeField()
