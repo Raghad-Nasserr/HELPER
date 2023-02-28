@@ -16,7 +16,6 @@ urlpatterns = [
     path("Delete/help/request/<request_id>/", views.delete_help_request, name="delete_help_request"),
     path("Help/details/<request_id>/", views.help_details, name="help_details"),
     path("Join/us/", views.add_new_helper, name="add_new_helper"),
-    path("Apply/<apply_id>/", views.apply, name="apply_page"),
     path("Reply/<request_id>/", views.add_reply, name="add_reply"),
     path("helper/profile/<user_id>/", views.helper_profile, name="helper_profile"),
     path("client/profile/", views.client_profile, name="client_profile"),
