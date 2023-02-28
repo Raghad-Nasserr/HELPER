@@ -46,7 +46,7 @@ a:visited {
                             <img class="img-md rounded-circle" src="{% static 'images/user icon.png' %}">
                         </div>
                         <div class="flex-grow-1 ms-3">
-                            <h5 style="color: rgb(238, 166, 77);"> {{request.user.first_name}} {{request.user.last_name}}</h5>
+                            <h5 style="color: rgb(238, 166, 77);"> {{helprequest.user.first_name}} {{helprequest.user.last_name}}</h5>
                             <p class="text-muted m-0">{{helprequest.phone_number}}</p>
                         </div>
                     </div>
@@ -55,15 +55,20 @@ a:visited {
                     <!-- Options buttons -->
                     <div class="mt-3 pt-2 text-center border-top">
                         <div class="d-flex justify-content-center gap-3">
+                            {% if request.user.id ==  helprequest.user.id %}
                             
                             <a href="{% url 'main:delete_help_request' helprequest.id %}" class="btn btn-sm  btn-outline-light btn-lg"style="background-color: rgb(219, 5, 101);">
                                                 <i class="fa fa-delete" aria-hidden="true"></i> Delete
                                             </a>
+                            {% endif %}
+
+                            {% if request.user.id ==  helprequest.user.id %}
                             <a href="{% url 'main:update_help_request' helprequest.id %}" class="btn btn-sm  btn-outline-light btn-lg" style="background-color: rgb(219, 5, 101);">
                                                 <i class="fa fa-pencil" aria-hidden="true"></i>Update
                                             </a>
 
-                                            
+                            {% endif %}
+    
                         </div>
                     </div>
                     <!-- END : Options buttons -->
@@ -75,14 +80,15 @@ a:visited {
     </div>
 </div>
  
+     <!-- In this section the helper replies will apper   -->
 
 <div class="container">
     <h3>New replies :</h3>
-    {% for i in reply %}
-   <button class="btn btn-sm  btn-outline-light btn-lg" style="background-color: rgb(219, 5, 101);"><a href="{% url 'main:helper_profile' %}"> <i class="fa fa-file" aria-hidden="true"></i>{{ request.user.first_name }}</a> </button >
+    {% for replies in reply %}
+   <button class="btn btn-sm  btn-outline-light btn-lg" style="background-color: rgb(219, 5, 101);"><a href="{% url 'main:helper_profile' replies.user.id %}"> <i class="fa fa-file" aria-hidden="true"></i>{{ replies.user.first_name }}</a> </button >
         <div class="p-2 border mt-2">
-            <p>{{ i.content }}</p>
-            <p>{{i.created_at}}</p>
+            <p>{{ replies.content }}</p>
+            <p>{{replies.created_at}}</p>
         </div>
     {% endfor %}
 
@@ -90,7 +96,9 @@ a:visited {
 
 
 
+  <!-- reply form   -->
 
+{% if request.user.helper %}
 
 <div  class="container">
     <br><hr> <br>
@@ -110,5 +118,7 @@ a:visited {
     </form>
     </div>
     <br>
+    
+{% endif %}
 
 {% endblock %}
