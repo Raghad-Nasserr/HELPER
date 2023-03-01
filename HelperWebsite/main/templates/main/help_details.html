@@ -24,12 +24,107 @@ body{
     margin-left: 70px;}
 
 a:hover {
-  color: rgb(250, 250, 250);
+  color: rgb(19, 17, 15);
 }
 
 
 a:visited {
   color: rgb(10, 28, 10);
+}
+
+body{
+    background:#eee;
+}
+
+hr {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border: 0;
+    border-top: 1px solid #FFFFFF;
+}
+a {
+    color: #d4811b;
+    text-decoration: underline;
+}
+.blog-comment::before,
+.blog-comment::after,
+.blog-comment-form::before,
+.blog-comment-form::after{
+    content: "";
+	display: table;
+	clear: both;
+}
+
+.blog-comment{
+    padding-left: 15%;
+	padding-right: 15%;
+}
+
+.blog-comment ul{
+	list-style-type: none;
+	padding: 0;
+}
+
+.blog-comment img{
+	opacity: 1;
+	filter: Alpha(opacity=100);
+	-webkit-border-radius: 4px;
+	   -moz-border-radius: 4px;
+	  	 -o-border-radius: 4px;
+			border-radius: 4px;
+}
+
+.blog-comment img.avatar {
+	position: relative;
+	float: left;
+	margin-left: 0;
+	margin-top: 0;
+	width: 65px;
+	height: 65px;
+}
+
+.blog-comment .post-comments{
+	border: 1px solid #eee;
+    margin-bottom: 20px;
+    margin-left: 85px;
+	margin-right: 0px;
+    padding: 10px 20px;
+    position: relative;
+    -webkit-border-radius: 4px;
+       -moz-border-radius: 4px;
+       	 -o-border-radius: 4px;
+    		border-radius: 4px;
+	background: #fff;
+	color: #6b6e80;
+	position: relative;
+}
+
+.blog-comment .meta {
+	font-size: 13px;
+	color: #aaaaaa;
+	padding-bottom: 8px;
+	margin-bottom: 10px !important;
+	border-bottom: 1px solid #eee;
+}
+
+.blog-comment ul.comments ul{
+	list-style-type: none;
+	padding: 0;
+	margin-left: 85px;
+}
+
+.blog-comment-form{
+	padding-left: 15%;
+	padding-right: 15%;
+	padding-top: 40px;
+}
+
+.blog-comment h3,
+.blog-comment-form h3{
+	margin-bottom: 40px;
+	font-size: 26px;
+	line-height: 30px;
+	font-weight: 800;
 }
 
 </style>
@@ -82,17 +177,26 @@ a:visited {
  
      <!-- In this section the helper replies will apper   -->
 
-<div class="container">
-    <h3>New replies :</h3>
-    {% for replies in reply %}
-   <button class="btn btn-sm  btn-outline-light btn-lg" style="background-color: rgb(219, 5, 101);"><a href="{% url 'main:helper_profile' replies.user.id %}"> <i class="fa fa-file" aria-hidden="true"></i>{{ replies.user.first_name }}</a> </button >
-        <div class="p-2 border mt-2">
-            <p>{{ replies.content }}</p>
-            <p>{{replies.created_at}}</p>
-        </div>
-    {% endfor %}
+     <div class="container bootstrap snippets bootdey">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="blog-comment">
+                    <h3 class="text" style="color: #d4811b; margin-top: 20px;">Replies :</h3>
+                    <hr/>
+                    {% for replies in reply %}
+                      <img src="{% static 'images/icon.jpg' %}" class="avatar" alt="">
+                      <div class="post-comments">
+                          <p class="meta">{{replies.created_at}} <a href="{% url 'main:helper_profile' replies.user.id %}">{{ replies.user.first_name }}</a> says :</p>
+                          <p>
+                            {{ replies.content }}
+                          </p>
+                      </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>  
+          
 
-</div>
 
 
 
